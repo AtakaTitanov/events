@@ -1,0 +1,43 @@
+
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+
+    <table class="table table-hover">
+        <tr>
+            {% if event.photo %}
+            <td>
+                <img src ="{{ url_for('static', filename=event.photo) }}" alt="photo" width="250" >
+            </td>
+            {% endif %}
+            <td>
+                Name: {{ event.name }}<br>
+                Description: {{ event.description }}<br>
+                Place: {{ place.name }}<br>
+                Place floor: {{ place.floor_number }}<br>
+                Organizer: <a href="url_for('user', login=organizer.login)">{{ organizer.name }}</a> <br>
+                Event type: {{ event_type.name }}
+            </td>
+        </tr>
+        <tr>
+            <h3><a href="{{ url_for('register_on_event', event_id=event.id) }}">Register on this event</a></h3>
+        </tr>
+        <tr>
+            <h3>To comment:</h3>
+            {{ wtf.quick_form(form) }}
+        </tr>
+    </table>
+
+    {% if comments %}
+        <table class="table table-hover">
+        {% for comment in comments %}
+            <tr>
+                <a href="{{ url_for('user', login=comment.user.login) }}">commentator: {{ comment.user.name }}</a> <br>
+                message:{{ comment.message }}<br>
+                grade: {{ comment.grade }}
+            </tr>
+        {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}
