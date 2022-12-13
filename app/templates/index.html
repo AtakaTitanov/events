@@ -2,5 +2,11 @@
 {% extends "base.html" %}
 
 {% block app_content %}
-<h1>Hellow, world!</h1>
+<h1>Hellow, {{ current_user.login }}!</h1>
+<h3>
+    Welcome to 'Events'<br>
+    This application is designed to register for hostel events<br>
+    You can also see the list of participants registered for the event<br>
+    You can also share feedback about the event
+</h3>
 {% endblock %}

@@ -1,0 +1,5 @@
+config.py
+app/static
+.idea
+__pycache__
+venv

@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
-</body>
-</html>
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+    <h1>Events</h1>
+    <table class="table table-hover">
+        {% for event in events %}
+            {% include '_event.html' %}
+        {% endfor %}
+    </table>
+{% endblock %}
+

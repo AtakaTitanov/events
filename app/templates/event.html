@@ -16,12 +16,17 @@
                 Description: {{ event.description }}<br>
                 Place: {{ place.name }}<br>
                 Place floor: {{ place.floor_number }}<br>
-                Organizer: <a href="url_for('user', login=organizer.login)">{{ organizer.name }}</a> <br>
+                Organizer: <a href="{{ url_for('user', login=organizer.login) }}">{{ organizer.FIO }}</a> <br>
                 Event type: {{ event_type.name }}
             </td>
         </tr>
         <tr>
+            {% if is_there == False %}
             <h3><a href="{{ url_for('register_on_event', event_id=event.id) }}">Register on this event</a></h3>
+            {% else %}
+            <h3><a href="{{ url_for('unregister_on_event', event_id=event.id) }}">Unregister on this event</a></h3>
+            {% endif %}
+            <h5><a href="{{ url_for('users_on_event', event_id=event.id) }}">See people on event</a></h5>
         </tr>
         <tr>
             <h3>To comment:</h3>
@@ -33,7 +38,7 @@
         <table class="table table-hover">
         {% for comment in comments %}
             <tr>
-                <a href="{{ url_for('user', login=comment.user.login) }}">commentator: {{ comment.user.name }}</a> <br>
+                commentator: <a href="{{ url_for('user', login=comment.user.login) }}">{{ comment.user.FIO }}</a> <br>
                 message:{{ comment.message }}<br>
                 grade: {{ comment.grade }}
             </tr>

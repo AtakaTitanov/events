@@ -3,5 +3,8 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
-
+    <h3>Users on Event: {{ event.name }}</h3>
+    {% for user in users %}
+        <a href="{{ url_for('user', login=user.login) }}">{{ user.FIO }}</a><br>
+    {% endfor %}
 {% endblock %}
